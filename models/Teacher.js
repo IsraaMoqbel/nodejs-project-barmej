@@ -1,7 +1,7 @@
 // في هذا الملف ، قم بإعداد وحدة المستخدم (المدرس) الخاصة بك | in this file, set up your user module
 
 // 1. قم باستيراد مكتبة moongoose | import the mongoose library
-import { hashPassword } from '../helper.js'
+import { hashPassword } from '../utils/helper.js'
 import shortId from 'shortid'
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;

@@ -1,7 +1,7 @@
 // في هذا الملف ، قم بإعداد طرق التطبيق الخاصة بك | in this file, set up your application routes
 import Joi from "joi";
 import jwt from 'jsonwebtoken'
-import { hashPassword } from "../helper.js";
+import { hashPassword } from "../utils/helper.js";
 import { INVALID_REQUEST_STATUS_CODE, NOT_FOUND_STATUS_CODE, NOT_FOUND_STUDENT_ERROR_MESSAGE } from "../constants/index.js";
 
 //  استيراد وحدة الطالب | import the student module

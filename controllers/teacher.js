@@ -1,6 +1,6 @@
 import Joi from "joi";
 import jwt from 'jsonwebtoken'
-import { hashPassword } from "../helper.js";
+import { hashPassword } from "../utils/helper.js";
 import { INVALID_REQUEST_STATUS_CODE, NOT_FOUND_STATUS_CODE } from "../constants/index.js";
 // استيراد وحدةالمدرس | import the teacher module
 import teacherModel from "../models/Teacher.js";
