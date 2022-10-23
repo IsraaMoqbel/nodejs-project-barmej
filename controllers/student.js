@@ -2,8 +2,11 @@
 import Joi from "joi";
 import jwt from 'jsonwebtoken'
 import { hashPassword } from "../utils/helper.js";
-import { INVALID_REQUEST_STATUS_CODE, NOT_FOUND_STATUS_CODE, NOT_FOUND_STUDENT_ERROR_MESSAGE } from "../constants/index.js";
-
+import {
+    INVALID_REQUEST_STATUS_CODE,
+    NOT_FOUND_STATUS_CODE,
+    NOT_FOUND_STUDENT_ERROR_MESSAGE,
+} from "../constants/index.js";
 //  استيراد وحدة الطالب | import the student module
 import studentModel from "../models/Student.js";
 
@@ -96,15 +99,15 @@ export const getStudent = async (req, res) => {
 
 export const updateStudent = async (req, res) => {
     const { id } = req.params;
-    try {        
+    try {
         const student = await studentModel.findById(id);
-    
+
         if (!student) {
             res.statusCode = NOT_FOUND_STATUS_CODE;
             res.send(NOT_FOUND_STUDENT_ERROR_MESSAGE)
         } else {
             const { birthday, city } = req.body;
-    
+
             if (birthday, city) {
                 student.birthday = birthday;
                 student.city = city;
@@ -122,7 +125,7 @@ export const deleteStudent = async (req, res) => {
     const { id } = req.params;
     try {
         const student = await studentModel.findById(id);
-    
+
         if (!student) {
             res.statusCode = NOT_FOUND_STATUS_CODE;
             res.send(NOT_FOUND_STUDENT_ERROR_MESSAGE)

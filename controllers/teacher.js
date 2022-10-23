@@ -1,7 +1,11 @@
 import Joi from "joi";
 import jwt from 'jsonwebtoken'
 import { hashPassword } from "../utils/helper.js";
-import { INVALID_REQUEST_STATUS_CODE, NOT_FOUND_STATUS_CODE } from "../constants/index.js";
+import {
+    INVALID_REQUEST_STATUS_CODE,
+    NOT_FOUND_STATUS_CODE,
+    NOT_FOUND_TEACHER_ERROR_MESSAGE,
+} from "../constants/index.js";
 // استيراد وحدةالمدرس | import the teacher module
 import teacherModel from "../models/Teacher.js";
 
@@ -50,7 +54,7 @@ export const loginTeacher = async (req, res) => {
 
     if (!user) {
         res.statusCode = 401;
-        res.send('Teacher not found!')
+        res.send(NOT_FOUND_TEACHER_ERROR_MESSAGE)
     } else {
         if (user.password === hashPassword(password)) {
             const token = jwt.sign({ sub: user._id }, user.salt, { expiresIn: 30 })
@@ -96,13 +100,13 @@ export const updateTeacher = async (req, res) => {
     const { id } = req.params;
     try {
         const teacher = await teacherModel.findById(id);
-    
+
         if (!teacher) {
             res.statusCode = NOT_FOUND_STATUS_CODE;
-            res.send('Teacher Not Found!!!');
+            res.send(NOT_FOUND_TEACHER_ERROR_MESSAGE);
         } else {
             const { birthday, city } = req.body;
-    
+
             if (birthday, city) {
                 teacher.birthday = birthday;
                 teacher.city = city;
@@ -110,7 +114,7 @@ export const updateTeacher = async (req, res) => {
             }
             res.send(teacher);
         }
-    } catch(error) {
+    } catch (error) {
         res.statusCode = INVALID_REQUEST_STATUS_CODE;
         res.send('Error getting teacher data');
     }
@@ -120,10 +124,10 @@ export const deleteTeacher = async (req, res) => {
     const { id } = req.params;
     try {
         const teacher = await teacherModel.findById(id);
-    
+
         if (!teacher) {
             res.statusCode = NOT_FOUND_STATUS_CODE;
-            res.send('Teacher Not Found!!!')
+            res.send(NOT_FOUND_TEACHER_ERROR_MESSAGE)
         } else {
             return teacherModel.remove();
         }
