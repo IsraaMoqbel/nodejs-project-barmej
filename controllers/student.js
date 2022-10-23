@@ -59,7 +59,7 @@ export const loginStudent = async (req, res) => {
             res.send(token)
         } else {
             res.statusCode = 403;
-            res.send('Password is wrong')
+            res.send('Wrong password')
         }
     }
 };
@@ -96,31 +96,41 @@ export const getStudent = async (req, res) => {
 
 export const updateStudent = async (req, res) => {
     const { id } = req.params;
-    const student = await studentModel.findById(id);
-
-    if (!student) {
-        res.statusCode = NOT_FOUND_STATUS_CODE;
-        res.send(NOT_FOUND_STUDENT_ERROR_MESSAGE)
-    } else {
-        const { birthday, city } = req.body;
-
-        if (birthday, city) {
-            student.birthday = birthday;
-            student.city = city;
-            student.save();
+    try {        
+        const student = await studentModel.findById(id);
+    
+        if (!student) {
+            res.statusCode = NOT_FOUND_STATUS_CODE;
+            res.send(NOT_FOUND_STUDENT_ERROR_MESSAGE)
+        } else {
+            const { birthday, city } = req.body;
+    
+            if (birthday, city) {
+                student.birthday = birthday;
+                student.city = city;
+                student.save();
+            }
+            res.send(student);
         }
-        res.send(student);
+    } catch (error) {
+        res.statusCode = INVALID_REQUEST_STATUS_CODE;
+        res.send('Error getting teacher data');
     }
 };
 
 export const deleteStudent = async (req, res) => {
     const { id } = req.params;
-    const student = await studentModel.findById(id);
-
-    if (!student) {
-        res.statusCode = NOT_FOUND_STATUS_CODE;
-        res.send(NOT_FOUND_STUDENT_ERROR_MESSAGE)
-    } else {
-        return studentModel.remove();
+    try {
+        const student = await studentModel.findById(id);
+    
+        if (!student) {
+            res.statusCode = NOT_FOUND_STATUS_CODE;
+            res.send(NOT_FOUND_STUDENT_ERROR_MESSAGE)
+        } else {
+            return studentModel.remove();
+        }
+    } catch (error) {
+        res.statusCode = INVALID_REQUEST_STATUS_CODE;
+        res.send('Error getting teacher data');
     }
 };

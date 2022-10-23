@@ -50,14 +50,14 @@ export const loginTeacher = async (req, res) => {
 
     if (!user) {
         res.statusCode = 401;
-        res.send('User Not Found!!!')
+        res.send('Teacher not found!')
     } else {
         if (user.password === hashPassword(password)) {
             const token = jwt.sign({ sub: user._id }, user.salt, { expiresIn: 30 })
             res.send(token)
         } else {
             res.statusCode = 403;
-            res.send('password is wrong')
+            res.send('Wrong password')
         }
     }
 };
@@ -70,7 +70,7 @@ export const getTeacher = async (req, res) => {
 
         if (!token) {
             res.statusCode = 401;
-            res.send('You do not have Permission!!!')
+            res.send('You do not have Permission!')
         }
 
         const decodedToken = jwt.decode(token);
@@ -79,7 +79,7 @@ export const getTeacher = async (req, res) => {
 
         if (!teacher) {
             res.statusCode = 401;
-            res.send('You do not have Permission!!!')
+            res.send('You do not have Permission!')
             return
         }
     } catch (error) {
@@ -94,39 +94,41 @@ export const getTeacher = async (req, res) => {
 
 export const updateTeacher = async (req, res) => {
     const { id } = req.params;
-    const teacher = await teacherModel.findById(id);
-
-    if (!teacher) {
-        res.statusCode = NOT_FOUND_STATUS_CODE;
-        res.send('Teacher Not Found!!!')
-    } else {
-        const { birthday, city } = req.body;
-
-        if (birthday, city) {
-            teacher.birthday = birthday;
-            teacher.city = city;
-            teacher.save();
+    try {
+        const teacher = await teacherModel.findById(id);
+    
+        if (!teacher) {
+            res.statusCode = NOT_FOUND_STATUS_CODE;
+            res.send('Teacher Not Found!!!');
+        } else {
+            const { birthday, city } = req.body;
+    
+            if (birthday, city) {
+                teacher.birthday = birthday;
+                teacher.city = city;
+                teacher.save();
+            }
+            res.send(teacher);
         }
-        res.send(teacher);
+    } catch(error) {
+        res.statusCode = INVALID_REQUEST_STATUS_CODE;
+        res.send('Error getting teacher data');
     }
 };
 
 export const deleteTeacher = async (req, res) => {
     const { id } = req.params;
-    const teacher = await teacherModel.findById(id);
-
-    if (!teacher) {
-        res.statusCode = NOT_FOUND_STATUS_CODE;
-        res.send('Teacher Not Found!!!')
-    } else {
-        return teacherModel.remove();
+    try {
+        const teacher = await teacherModel.findById(id);
+    
+        if (!teacher) {
+            res.statusCode = NOT_FOUND_STATUS_CODE;
+            res.send('Teacher Not Found!!!')
+        } else {
+            return teacherModel.remove();
+        }
+    } catch (error) {
+        res.statusCode = INVALID_REQUEST_STATUS_CODE;
+        res.send('Error getting teacher data');
     }
 };
-
-// module.exports = {
-//     registerTeacher,
-//     loginTeacher,
-//     getTeacher,
-//     updateTeacher,
-//     deleteTeacher,
-// };
