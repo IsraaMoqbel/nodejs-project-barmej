@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "538ca336-e360-40db-ba1b-a9610dd4f6eb",
+		"name": "school",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/teacher/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "John Doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "johndoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "johndoe1234",
+							"type": "text"
+						},
+						{
+							"key": "salt",
+							"value": "something",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/teacher/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"teacher",
+						"register"
+					]
+				},
+				"description": "Sign up a new teacher"
+			},
+			"response": []
+		},
+		{
+			"name": "/teacher/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "johndoe@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "johndoe1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/teacher/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"teacher",
+						"login"
+					]
+				},
+				"description": "Login a teacher"
+			},
+			"response": []
+		},
+		{
+			"name": "/teacher/:id Edit teacher data",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/teacher/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"teacher",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/teacher/:id Delete teacher request",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/teacher/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"teacher",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/student/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTkyMWQ0NDhlYzA0NDdiYjQwMWRiYzkiLCJpYXQiOjE2MzY5NjcwNDAsImV4cCI6MTYzNjk2NzA3MH0.l8ndsleFYzjgfF6s86aTcoVBfGX1Ml8YraTz8eKD7dQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mike Doe",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "mike@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "mike123",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "London",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "02.02.1977",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/student/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"student",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/student/login Login student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "x@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password@@@",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/student/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"student",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "x@gmail.com",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/student/:id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTkyMWQ0NDhlYzA0NDdiYjQwMWRiYzkiLCJpYXQiOjE2MzY5Njc1NDIsImV4cCI6MTYzNjk2NzU3Mn0.0NToD2PnW90uVRXbm2CyU6zjeMVqrnM6ZiW3lHvOY_Q",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Jane W H Doe",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "09.04.1987",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "NY",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/student/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"student",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "61921d9e8ec0447bb401dbcc"
+						}
+					]
+				},
+				"description": "Update student info"
+			},
+			"response": []
+		},
+		{
+			"name": "/student/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTkyMWQ0NDhlYzA0NDdiYjQwMWRiYzkiLCJpYXQiOjE2MzY5NjcyNzgsImV4cCI6MTYzNjk2NzMwOH0.WDzvZPM5x0ib50kBIayIklrwSawxuu0DmUKKrlzZYOs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/student/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"student",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6192228919c0ab305bf8afa9"
+						}
+					]
+				},
+				"description": "Delete a student by id"
+			},
+			"response": []
+		},
+		{
+			"name": "/student/:id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTkyMWQ0NDhlYzA0NDdiYjQwMWRiYzkiLCJpYXQiOjE2MzY5NjY5NDQsImV4cCI6MTYzNjk2Njk3NH0.WiuhWphtHIwRji8jIgjbWHOSemo7gZefzwyrDcOvkWw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/student/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"student",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "61921d9e8ec0447bb401dbcc"
+						}
+					]
+				},
+				"description": "Get student by id"
+			},
+			"response": []
+		},
+		{
+			"name": "/students invalid route",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTkyMWQ0NDhlYzA0NDdiYjQwMWRiYzkiLCJpYXQiOjE2MzY5NjY0MDcsImV4cCI6MTYzNjk2NjQzN30.-mwz3uFNtjUSX_SOIHh94hY5b_n3i466woMgnwwHeQY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"students"
+					]
+				},
+				"description": "Get all students"
+			},
+			"response": []
+		}
+	]
+}
